@@ -1,7 +1,7 @@
 import { useState } from "react";
 import AuthContext from "../context/AuthContext";
 import type Iuser from "../interfaces/Iuser";
-import { login, register } from "../api/authApi";
+import { login, register, updateUser } from "../api/authApi";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -42,6 +42,19 @@ function AuthProvider({ children }: Props) {
     navigate("/listings");
   };
 
+  const updateProfileHandler = async (name: string, email: string) => {
+    if (!user?.id) {
+      toast.error("Unable to update profile.");
+      return;
+    }
+
+    const updatedUser = await updateUser(user.id, { name, email });
+    const mergedUser = { ...user, ...updatedUser };
+    setUser(mergedUser);
+    localStorage.setItem("user", JSON.stringify(mergedUser));
+    toast.success("Profile updated successfully!");
+  };
+
   const logoutHandler = () => {
     setUser(null);
     localStorage.removeItem("user");
@@ -49,7 +62,15 @@ function AuthProvider({ children }: Props) {
   };
 
   return (
-    <AuthContext.Provider value={{ user, isAuthenticated, loginHandler, registerHandler, logoutHandler }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        isAuthenticated,
+        loginHandler,
+        registerHandler,
+        updateProfileHandler,
+        logoutHandler,
+      }}>
       {children}
     </AuthContext.Provider>
   );
