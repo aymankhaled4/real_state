@@ -57,14 +57,14 @@ export default function ProfilePage() {
         <h1 className="text-[40px] font-bold text-[#111827] text-center mb-8">My Profile</h1>
 
         <div className="rounded-2xl border border-[#eef0f5] bg-white shadow-[0_2px_20px_rgba(15,23,42,0.04)] p-6">
-          <div className="flex items-start justify-between">
-            <div className="w-16 h-16 rounded-full bg-[#ececf1] flex items-center justify-center text-[#4b5563] font-semibold">
+          <div className="relative">
+            <div className="w-16 h-16 rounded-full bg-[#ececf1] flex items-center justify-center text-[#4b5563] font-semibold mx-auto">
               {initials}
             </div>
             <button
               type="button"
               onClick={() => setIsEditing((prev) => !prev)}
-              className="inline-flex items-center gap-2 text-[13px] text-[#374151] cursor-pointer"
+              className="inline-flex items-center gap-2 text-[13px] text-[#374151] cursor-pointer absolute top-0 right-0"
             >
               <FiEdit2 className="w-4 h-4" />
               {isEditing ? "Cancel" : "Edit"}
