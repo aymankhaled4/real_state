@@ -6,6 +6,7 @@ interface IAuthContext{
   isAuthenticated: boolean;
   loginHandler: (email: string ,password:string) => Promise<void>;
   registerHandler: (name:string, email: string, password:string) => Promise<void>;
+  updateProfileHandler: (name: string, email: string) => Promise<void>;
   logoutHandler: () => void;
 }
 

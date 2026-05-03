@@ -1,8 +1,9 @@
 import axios from "axios";
 import type Iuser from "../interfaces/Iuser";
+import { API_BASE_URL } from "./apiConfig";
 
 export async function register({ email, name, password }: Iuser) {
-  const response = await axios.post('http://localhost:3001/users', {
+  const response = await axios.post(`${API_BASE_URL}/users`, {
     email,
     name,
     password,
@@ -12,6 +13,14 @@ export async function register({ email, name, password }: Iuser) {
 
 
 export async function login({ email, password }: Pick<Iuser, 'email' | 'password'>) {
-  const response = await axios.get(`http://localhost:3001/users?email=${email}&password=${password}`);
+  const response = await axios.get(`${API_BASE_URL}/users?email=${email}&password=${password}`);
+  return response.data;
+}
+
+export async function updateUser(
+  id: string,
+  payload: Pick<Iuser, "name" | "email">
+) {
+  const response = await axios.patch(`${API_BASE_URL}/users/${id}`, payload);
   return response.data;
 }
