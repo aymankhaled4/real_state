@@ -141,6 +141,12 @@
       "name": "ayman",
       "password": "12345678A",
       "id": "HIW1hU3"
+    },
+    {
+      "id": "8f42",
+      "email": "roaaelrouby45@gmail.com",
+      "name": "Roaa Abdelwhab ",
+      "password": "123456AA"
     }
   ],
   "favorites": [
@@ -178,6 +184,16 @@
       "id": "7",
       "userId": 3,
       "propertyId": 8
+    },
+    {
+      "id": "aea7",
+      "userId": "8f42",
+      "propertyId": "2"
+    },
+    {
+      "id": "de5b",
+      "userId": "8f42",
+      "propertyId": "1"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

@@ -4,6 +4,7 @@ import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
 import ProfilePage from "../pages/ProfilePage";
 import FavoritesPage from "../pages/FavoritesPage";
+import PropertyDetailPage from "../pages/PropertyDetailPage";
 
 export default function AppRouter() {
   return (
@@ -14,6 +15,7 @@ export default function AppRouter() {
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/profile" element={<ProfilePage />} />
       <Route path="/favorites" element={<FavoritesPage />} />
+      <Route path="/properties/:id" element={<PropertyDetailPage />} />
     </Routes>
   );
 }
