@@ -17,7 +17,7 @@ export default function Navbar() {
 
   return (
     <header className="bg-[#fdfdff] border-b border-[#eef0f5]">
-      <nav className="px-8 py-3 flex items-center justify-between max-w-[1280px] mx-auto">
+      <nav className="px-8 py-3 flex items-center justify-between">
         <div className="flex items-center gap-8">
           <h1 className="text-2xl font-semibold leading-8 tracking-[-1.2px] text-[#0B1C30]">
             DreamHome
@@ -45,8 +45,7 @@ export default function Navbar() {
             <button
               type="button"
               onClick={logoutHandler}
-              className="inline-flex items-center gap-1 text-[13px] font-medium text-[#0f172a] cursor-pointer"
-            >
+              className="inline-flex items-center gap-1 text-[13px] font-medium text-[#0f172a] cursor-pointer">
               <FiLogOut className="w-4 h-4" />
               Logout
             </button>
