@@ -2,12 +2,16 @@ import type IProperty from "../../interfaces/Iproperties";
 import bed from "../../assets/beds.svg";
 import bath from "../../assets/baths.svg";
 import sq from "../../assets/sq.svg";
-import fav from "../../assets/fav.svg";
+import { FiHeart } from "react-icons/fi";
+import useFavorites from "../../hooks/useFavorites";
 
 interface Props {
   property: IProperty;
 }
 export default function PropertyCard({ property }: Props) {
+  const { isFavorite, toggleFavorite } = useFavorites();
+  const favorited = isFavorite(String(property.id));
+  
   return (
     <div className="bg-white rounded-3xl">
       <div className="relative">
@@ -16,9 +20,19 @@ export default function PropertyCard({ property }: Props) {
           src={property.image}
           alt={property.title}
         />
-        <div className="w-10 h-10 bg-[#FFFFFFCC] rounded-full absolute top-4 right-4 flex items-center justify-center cursor-pointer">
-          <img src={fav} alt="Favorite" className="w-5 h-4.75" />
-        </div>
+        <button
+          type="button"
+          onClick={() => toggleFavorite(String(property.id))}
+          className="w-10 h-10 bg-[#FFFFFFCC] rounded-full absolute top-4 right-4 flex items-center justify-center cursor-pointer hover:scale-110 transition-transform"
+        >
+          <FiHeart
+            className={`w-5 h-5 transition-colors ${
+              favorited
+                ? "fill-red-500 stroke-red-500"
+                : "stroke-[#0B1C30] fill-none"
+            }`}
+          />
+        </button>
       </div>
       <div className="p-6 lg:p-8">
         <div className="flex items-center justify-between">
