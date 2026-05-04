@@ -45,7 +45,7 @@ function AuthProvider({ children }: Props) {
   const updateProfileHandler = async (name: string, email: string) => {
     if (!user?.id) {
       toast.error("Unable to update profile.");
-      return;
+      return false;
     }
 
     const updatedUser = await updateUser(user.id, { name, email });
@@ -53,6 +53,26 @@ function AuthProvider({ children }: Props) {
     setUser(mergedUser);
     localStorage.setItem("user", JSON.stringify(mergedUser));
     toast.success("Profile updated successfully!");
+    return true;
+  };
+
+  const updatePasswordHandler = async (currentPassword: string, newPassword: string) => {
+    if (!user?.id) {
+      toast.error("Unable to update password.");
+      return false;
+    }
+
+    if (user.password !== currentPassword) {
+      toast.error("Current password is incorrect.");
+      return false;
+    }
+
+    const updatedUser = await updateUser(user.id, { password: newPassword });
+    const mergedUser = { ...user, ...updatedUser };
+    setUser(mergedUser);
+    localStorage.setItem("user", JSON.stringify(mergedUser));
+    toast.success("Password updated successfully!");
+    return true;
   };
 
   const logoutHandler = () => {
@@ -69,6 +89,7 @@ function AuthProvider({ children }: Props) {
         loginHandler,
         registerHandler,
         updateProfileHandler,
+        updatePasswordHandler,
         logoutHandler,
       }}>
       {children}

@@ -1,22 +1,34 @@
 import { Formik, Form, Field } from "formik";
-import { useContext, useEffect, useMemo, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
-import { FiEdit2, FiHeart, FiMail, FiShield, FiUser } from "react-icons/fi";
+import { FiEdit2, FiHeart, FiLock, FiLogOut, FiMail, FiShield, FiUser } from "react-icons/fi";
 import * as Yup from "yup";
 import AuthContext from "../context/AuthContext";
 import { getUserFavorites } from "../api/favoritesApi";
 
-const validationSchema = Yup.object({
+const profileValidationSchema = Yup.object({
   name: Yup.string()
     .min(3, "Name must be at least 3 characters")
     .max(20, "Name must be at most 20 characters")
     .required("Name is required"),
-  email: Yup.string().email("Invalid email format").required("Email is required"),
+});
+
+const passwordValidationSchema = Yup.object({
+  currentPassword: Yup.string().required("Current password is required"),
+  newPassword: Yup.string()
+    .min(8, "Password must be at least 8 characters")
+    .matches(/[A-Z]/, "Password must contain at least one uppercase letter")
+    .required("New password is required"),
+  confirmPassword: Yup.string()
+    .oneOf([Yup.ref("newPassword")], "Passwords do not match")
+    .required("Please confirm your password"),
 });
 
 export default function ProfilePage() {
-  const { user, isAuthenticated, updateProfileHandler } = useContext(AuthContext);
+  const { user, isAuthenticated, updateProfileHandler, updatePasswordHandler, logoutHandler } =
+    useContext(AuthContext);
   const [isEditing, setIsEditing] = useState(false);
+  const [isPasswordEditing, setIsPasswordEditing] = useState(false);
   const [favoritesCount, setFavoritesCount] = useState(0);
 
   useEffect(() => {
@@ -33,23 +45,17 @@ export default function ProfilePage() {
     void loadFavorites();
   }, [user?.id]);
 
-  const initials = useMemo(() => {
-    if (!user?.name) {
-      return "U";
-    }
-
-    return user.name
-      .split(" ")
-      .filter(Boolean)
-      .map((part) => part[0])
-      .join("")
-      .slice(0, 2)
-      .toUpperCase();
-  }, [user?.name]);
-
   if (!isAuthenticated || !user) {
     return <Navigate to="/login" replace />;
   }
+
+  const initials = user.name
+    .split(" ")
+    .filter(Boolean)
+    .map((part) => part[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
 
   return (
     <main className="min-h-screen bg-white px-4 py-10">
@@ -76,10 +82,13 @@ export default function ProfilePage() {
           </h2>
 
           <Formik
-            initialValues={{ name: user.name, email: user.email }}
-            validationSchema={validationSchema}
+            initialValues={{ name: user.name }}
+            validationSchema={profileValidationSchema}
             onSubmit={async (values) => {
-              await updateProfileHandler(values.name, values.email);
+              const updated = await updateProfileHandler(values.name, user.email);
+              if (!updated) {
+                return;
+              }
               setIsEditing(false);
             }}
             enableReinitialize
@@ -119,18 +128,10 @@ export default function ProfilePage() {
                     <p className="text-[11px] uppercase tracking-wide text-[#9ca3af]">
                       Email Address
                     </p>
-                    {isEditing ? (
-                      <Field
-                        name="email"
-                        type="email"
-                        className="w-full bg-transparent text-[14px] font-semibold text-[#111827] focus:outline-none"
-                      />
-                    ) : (
-                      <p className="text-[14px] font-semibold text-[#111827]">{user.email}</p>
-                    )}
-                    {isEditing && touched.email && errors.email ? (
-                      <p className="text-red-500 text-[12px] mt-1">{errors.email}</p>
-                    ) : null}
+                    <p className="text-[14px] font-semibold text-[#111827]">{user.email}</p>
+                    <p className="text-[12px] text-[#9ca3af] mt-1">
+                      Email cannot be changed from profile settings.
+                    </p>
                   </div>
                 </div>
 
@@ -145,6 +146,102 @@ export default function ProfilePage() {
               </Form>
             )}
           </Formik>
+
+          <div className="mt-4 rounded-xl border border-[#eef0f5] bg-[#fbfcff] p-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <FiLock className="w-4 h-4 text-[#6b7280]" />
+                <h3 className="text-[14px] font-semibold text-[#111827]">Security</h3>
+              </div>
+              <button
+                type="button"
+                onClick={() => setIsPasswordEditing((prev) => !prev)}
+                className="text-[13px] font-medium text-[#047857] cursor-pointer"
+              >
+                {isPasswordEditing ? "Cancel" : "Change Password"}
+              </button>
+            </div>
+
+            {isPasswordEditing ? (
+              <Formik
+                initialValues={{
+                  currentPassword: "",
+                  newPassword: "",
+                  confirmPassword: "",
+                }}
+                validationSchema={passwordValidationSchema}
+                onSubmit={async (values, { resetForm }) => {
+                  const changed = await updatePasswordHandler(
+                    values.currentPassword,
+                    values.newPassword
+                  );
+                  if (!changed) {
+                    return;
+                  }
+                  resetForm();
+                  setIsPasswordEditing(false);
+                }}
+                validateOnBlur={false}
+                validateOnChange={false}
+              >
+                {({ errors, touched }) => (
+                  <Form className="mt-4 space-y-3">
+                    <div>
+                      <Field
+                        name="currentPassword"
+                        type="password"
+                        placeholder="Current password"
+                        className="w-full h-10 px-3 rounded-lg border border-[#e5e7eb] bg-white text-[14px] text-[#0B1C30] focus:outline-none focus:border-[#047857]"
+                      />
+                      {touched.currentPassword && errors.currentPassword ? (
+                        <p className="text-red-500 text-[12px] mt-1">{errors.currentPassword}</p>
+                      ) : null}
+                    </div>
+
+                    <div>
+                      <Field
+                        name="newPassword"
+                        type="password"
+                        placeholder="New password"
+                        className="w-full h-10 px-3 rounded-lg border border-[#e5e7eb] bg-white text-[14px] text-[#0B1C30] focus:outline-none focus:border-[#047857]"
+                      />
+                      {touched.newPassword && errors.newPassword ? (
+                        <p className="text-red-500 text-[12px] mt-1">{errors.newPassword}</p>
+                      ) : null}
+                    </div>
+
+                    <div>
+                      <Field
+                        name="confirmPassword"
+                        type="password"
+                        placeholder="Confirm new password"
+                        className="w-full h-10 px-3 rounded-lg border border-[#e5e7eb] bg-white text-[14px] text-[#0B1C30] focus:outline-none focus:border-[#047857]"
+                      />
+                      {touched.confirmPassword && errors.confirmPassword ? (
+                        <p className="text-red-500 text-[12px] mt-1">{errors.confirmPassword}</p>
+                      ) : null}
+                    </div>
+
+                    <button
+                      type="submit"
+                      className="w-full h-10 rounded-lg bg-[#131b2e] text-white text-[14px] font-medium hover:bg-[#1b2743] transition-colors cursor-pointer"
+                    >
+                      Update Password
+                    </button>
+                  </Form>
+                )}
+              </Formik>
+            ) : null}
+          </div>
+
+          <button
+            type="button"
+            onClick={logoutHandler}
+            className="w-full mt-4 h-11 rounded-xl border border-[#fecaca] bg-[#fff5f5] text-[#b91c1c] text-[14px] font-semibold hover:bg-[#ffe7e7] transition-colors cursor-pointer inline-flex items-center justify-center gap-2"
+          >
+            <FiLogOut className="w-4 h-4" />
+            Logout
+          </button>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-5">
