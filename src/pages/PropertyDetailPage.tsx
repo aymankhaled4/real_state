@@ -8,6 +8,7 @@ export default function PropertyDetailPage() {
   const navigate = useNavigate();
   const { property, loading } = usePropertyById(id);
 
+  
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
