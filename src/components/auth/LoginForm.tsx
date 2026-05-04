@@ -37,7 +37,7 @@ function LoginForm() {
             name="email"
             type="email"
             placeholder="Email address"
-            className="w-full h-12 px-4 rounded-xl border border-gray-200 bg-white text-[14px] text-[#0B1C30] focus:outline-none focus:border-[#047857] focus:ring-2 focus:ring-[#047857]/10"
+            className="w-full h-12 px-4 rounded-xl border border-border bg-surface text-[14px] text-foreground placeholder:text-subtle focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/10"
           />
           <ErrorMessage name="email" component="p" className="text-red-500 text-[12px] mt-1" />
         </div>
@@ -47,14 +47,14 @@ function LoginForm() {
             name="password"
             type="password"
             placeholder="Password"
-            className="w-full h-12 px-4 rounded-xl border border-gray-200 bg-white text-[14px] text-[#0B1C30] focus:outline-none focus:border-[#047857] focus:ring-2 focus:ring-[#047857]/10"
+            className="w-full h-12 px-4 rounded-xl border border-border bg-surface text-[14px] text-foreground placeholder:text-subtle focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/10"
           />
           <ErrorMessage name="password" component="p" className="text-red-500 text-[12px] mt-1" />
         </div>
 
         <button
           type="submit"
-          className="w-full h-12 bg-[#131b2e] text-white text-[14px] font-medium rounded-xl hover:bg-[#1b2743] transition-colors cursor-pointer mt-2"
+          className="w-full h-12 bg-accent-hover text-white text-[14px] font-medium rounded-xl hover:opacity-90 transition-colors cursor-pointer mt-2"
         >
           Sign in
         </button>
