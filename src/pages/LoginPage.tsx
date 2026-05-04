@@ -23,21 +23,21 @@ export default function LoginPage() {
         </div>
       </div>
 
-      <div className="w-full lg:w-1/2 flex items-center justify-center bg-[#f8f9ff] px-6 py-12">
+      <div className="w-full lg:w-1/2 flex items-center justify-center bg-page px-6 py-12 transition-colors">
         <div className="w-full max-w-md">
-          <span className="text-[13px] font-bold text-[#006C4A] tracking-[1.6px]">
+          <span className="text-[13px] font-bold text-accent tracking-[1.6px]">
             WELCOME BACK
           </span>
-          <h1 className="text-4xl font-bold text-[#0B1C30] mt-2 mb-2">
+          <h1 className="text-4xl font-bold text-foreground mt-2 mb-2">
             Sign in
           </h1>
-          <p className="text-[#45464D] text-[15px] mb-8">
+          <p className="text-muted-foreground text-[15px] mb-8">
             Access your saved properties and personalized listings.
           </p>
           <LoginForm />
-          <p className="text-center text-[14px] text-[#45464D] mt-6">
+          <p className="text-center text-[14px] text-muted-foreground mt-6">
             Don't have an account?{" "}
-            <Link to="/register" className="text-[#047857] font-semibold hover:underline">
+            <Link to="/register" className="text-accent font-semibold hover:underline">
               Create one
             </Link>
           </p>

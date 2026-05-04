@@ -19,7 +19,7 @@ export async function login({ email, password }: Pick<Iuser, 'email' | 'password
 
 export async function updateUser(
   id: string,
-  payload: Pick<Iuser, "name" | "email">
+  payload: Partial<Pick<Iuser, "name" | "email" | "password">>
 ) {
   const response = await axios.patch(`${API_BASE_URL}/users/${id}`, payload);
   return response.data;

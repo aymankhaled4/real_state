@@ -1,5 +1,52 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --bg-page: #f8f9ff;
+  --bg-surface: #ffffff;
+  --bg-surface-elevated: #fdfdff;
+  --border-default: #eef0f5;
+  --border-strong: #e5e7eb;
+  --text-primary: #0b1c30;
+  --text-secondary: #475569;
+  --text-muted: #9ca3af;
+  --accent: #047857;
+  --accent-hover: #131b2e;
+  --footer-bg: #0f172a;
+}
+
+html.dark {
+  --bg-page: #0f172a;
+  --bg-surface: #1e293b;
+  --bg-surface-elevated: #334155;
+  --border-default: #334155;
+  --border-strong: #475569;
+  --text-primary: #f1f5f9;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --accent: #34d399;
+  --accent-hover: #1e293b;
+  --footer-bg: #020617;
+}
+
+@theme inline {
+  --color-page: var(--bg-page);
+  --color-surface: var(--bg-surface);
+  --color-surface-elevated: var(--bg-surface-elevated);
+  --color-border: var(--border-default);
+  --color-border-strong: var(--border-strong);
+  --color-foreground: var(--text-primary);
+  --color-muted-foreground: var(--text-secondary);
+  --color-subtle: var(--text-muted);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-footer: var(--footer-bg);
+}
+
 body {
-    font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  transition: background-color 0.2s ease, color 0.2s ease;
 }

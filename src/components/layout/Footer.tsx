@@ -3,14 +3,14 @@ import message from "../../assets/message.svg";
 
 export default function Footer() {
   return (
-    <section className="bg-[#0f172a] py-10 lg:py-12 px-4 lg:px-8 flex flex-col gap-6 lg:gap-10">
+    <section className="bg-footer py-10 lg:py-12 px-4 lg:px-8 flex flex-col gap-6 lg:gap-10 transition-colors">
       <div className="flex flex-col lg:flex-row items-end justify-between gap-5">
         <div className="w-full lg:w-[40%]">
           <div>
             <h2 className="text-[20px] font-bold leading-7 text-white">
               DreamHome
             </h2>
-            <p className="text-[12px] leading-5 text-[#94A3B8] font-normal mt-4 w-[55%]">
+            <p className="text-[12px] leading-5 text-slate-400 font-normal mt-4 w-[55%]">
               © 2026 DREAMHOME ARCHITECTURAL EDITORIAL. ALL RIGHTS RESERVED.
             </p>
           </div>
@@ -20,48 +20,48 @@ export default function Footer() {
             <li>
               <a
                 href="#"
-                className="text-[12px] leading-4 tracking-[0.3px] text-[#94A3B8] font-medium hover:text-white transition-colors">
+                className="text-[12px] leading-4 tracking-[0.3px] text-slate-400 font-medium hover:text-white transition-colors">
                 PRIVACY POLICY
               </a>
             </li>
             <li>
               <a
                 href="#"
-                className="text-[12px] leading-4 tracking-[0.3px] text-[#94A3B8] font-medium hover:text-white transition-colors">
+                className="text-[12px] leading-4 tracking-[0.3px] text-slate-400 font-medium hover:text-white transition-colors">
                 TERMS OF SERVICE
               </a>
             </li>
             <li>
               <a
                 href="#"
-                className="text-[12px] leading-4 tracking-[0.3px] text-[#94A3B8] font-medium hover:text-white transition-colors">
+                className="text-[12px] leading-4 tracking-[0.3px] text-slate-400 font-medium hover:text-white transition-colors">
                 COOKIE SETTINGS
               </a>
             </li>
             <li>
               <a
                 href="#"
-                className="text-[12px] leading-4 tracking-[0.3px] text-[#94A3B8] font-medium hover:text-white transition-colors">
+                className="text-[12px] leading-4 tracking-[0.3px] text-slate-400 font-medium hover:text-white transition-colors">
                 SUSTAINABILITY
               </a>
             </li>
             <li>
               <a
                 href="#"
-                className="text-[12px] leading-4 tracking-[0.3px] text-[#94A3B8] font-medium hover:text-white transition-colors">
+                className="text-[12px] leading-4 tracking-[0.3px] text-slate-400 font-medium hover:text-white transition-colors">
                 PRESS
               </a>
             </li>
           </ul>
         </div>
       </div>
-      <div className="flex items-end justify-between border-t border-[#c2bcbc1e] pt-6">
+      <div className="flex items-end justify-between border-t border-white/10 pt-6">
         <div className="flex items-center gap-4">
           <img src={share} alt="Share" />
           <img src={message} alt="Message" />
         </div>
         <div>
-          <span className="text-[10px] text-[#64748B] font-bold tracking-[1px] leading-3.75">
+          <span className="text-[10px] text-slate-500 font-bold tracking-[1px] leading-3.75">
             DESIGNED FOR THE DISCERNING EYE
           </span>
         </div>

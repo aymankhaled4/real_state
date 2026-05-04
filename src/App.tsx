@@ -8,7 +8,7 @@ function App() {
   const hideLayout = ["/login", "/register"].includes(pathname);
 
   return (
-    <div>
+    <div className="min-h-screen bg-page text-foreground transition-colors">
       {!hideLayout && <Navbar />}
       <AppRouter />
       {!hideLayout && <Footer />}
