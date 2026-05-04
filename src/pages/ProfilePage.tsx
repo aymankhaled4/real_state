@@ -122,7 +122,9 @@ export default function ProfilePage() {
                       <Field
                         name="name"
                         type="text"
-                        className="w-full bg-transparent text-[14px] font-semibold text-[#111827] focus:outline-none"
+                        autoFocus
+                        placeholder="Enter your full name"
+                        className="w-full h-10 px-3 rounded-lg border border-[#d1d5db] bg-white text-[14px] font-semibold text-[#111827] focus:outline-none focus:border-[#047857] focus:ring-2 focus:ring-[#047857]/10"
                       />
                     ) : (
                       <p className="text-[14px] font-semibold text-[#111827]">{user.name}</p>
