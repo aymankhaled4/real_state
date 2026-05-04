@@ -30,7 +30,11 @@ function AuthProvider({ children }: Props) {
     navigate("/listings");
   };
 
-  const registerHandler = async (name: string, email: string, password: string) => {
+  const registerHandler = async (
+    name: string,
+    email: string,
+    password: string,
+  ) => {
     const existing = await login({ email, password });
     if (existing.length > 0) {
       toast.error("Email already exists!");
@@ -56,7 +60,10 @@ function AuthProvider({ children }: Props) {
     return true;
   };
 
-  const updatePasswordHandler = async (currentPassword: string, newPassword: string) => {
+  const updatePasswordHandler = async (
+    currentPassword: string,
+    newPassword: string,
+  ) => {
     if (!user?.id) {
       toast.error("Unable to update password.");
       return false;
@@ -91,7 +98,8 @@ function AuthProvider({ children }: Props) {
         updateProfileHandler,
         updatePasswordHandler,
         logoutHandler,
-      }}>
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );

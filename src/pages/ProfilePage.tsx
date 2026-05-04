@@ -1,7 +1,17 @@
 import { Formik, Form, Field } from "formik";
 import { useContext, useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
-import { FiEdit2, FiHeart, FiLock, FiLogOut, FiMail, FiShield, FiUser } from "react-icons/fi";
+import {
+  FiEdit2,
+  FiEye,
+  FiEyeOff,
+  FiHeart,
+  FiLock,
+  FiLogOut,
+  FiMail,
+  FiShield,
+  FiUser,
+} from "react-icons/fi";
 import * as Yup from "yup";
 import AuthContext from "../context/AuthContext";
 import { getUserFavorites } from "../api/favoritesApi";
@@ -29,6 +39,9 @@ export default function ProfilePage() {
     useContext(AuthContext);
   const [isEditing, setIsEditing] = useState(false);
   const [isPasswordEditing, setIsPasswordEditing] = useState(false);
+  const [showCurrentPassword, setShowCurrentPassword] = useState(false);
+  const [showNewPassword, setShowNewPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [favoritesCount, setFavoritesCount] = useState(0);
 
   useEffect(() => {
@@ -178,6 +191,9 @@ export default function ProfilePage() {
                   if (!changed) {
                     return;
                   }
+                  setShowCurrentPassword(false);
+                  setShowNewPassword(false);
+                  setShowConfirmPassword(false);
                   resetForm();
                   setIsPasswordEditing(false);
                 }}
@@ -187,36 +203,66 @@ export default function ProfilePage() {
                 {({ errors, touched }) => (
                   <Form className="mt-4 space-y-3">
                     <div>
-                      <Field
-                        name="currentPassword"
-                        type="password"
-                        placeholder="Current password"
-                        className="w-full h-10 px-3 rounded-lg border border-[#e5e7eb] bg-white text-[14px] text-[#0B1C30] focus:outline-none focus:border-[#047857]"
-                      />
+                      <div className="relative">
+                        <Field
+                          name="currentPassword"
+                          type={showCurrentPassword ? "text" : "password"}
+                          placeholder="Current password"
+                          className="w-full h-10 pl-3 pr-10 rounded-lg border border-[#e5e7eb] bg-white text-[14px] text-[#0B1C30] focus:outline-none focus:border-[#047857]"
+                        />
+                        <button
+                          type="button"
+                          onClick={() => setShowCurrentPassword((prev) => !prev)}
+                          className="absolute right-3 top-1/2 -translate-y-1/2 text-[#6b7280] hover:text-[#111827] cursor-pointer"
+                          aria-label={showCurrentPassword ? "Hide current password" : "Show current password"}
+                        >
+                          {showCurrentPassword ? <FiEyeOff className="w-4 h-4" /> : <FiEye className="w-4 h-4" />}
+                        </button>
+                      </div>
                       {touched.currentPassword && errors.currentPassword ? (
                         <p className="text-red-500 text-[12px] mt-1">{errors.currentPassword}</p>
                       ) : null}
                     </div>
 
                     <div>
-                      <Field
-                        name="newPassword"
-                        type="password"
-                        placeholder="New password"
-                        className="w-full h-10 px-3 rounded-lg border border-[#e5e7eb] bg-white text-[14px] text-[#0B1C30] focus:outline-none focus:border-[#047857]"
-                      />
+                      <div className="relative">
+                        <Field
+                          name="newPassword"
+                          type={showNewPassword ? "text" : "password"}
+                          placeholder="New password"
+                          className="w-full h-10 pl-3 pr-10 rounded-lg border border-[#e5e7eb] bg-white text-[14px] text-[#0B1C30] focus:outline-none focus:border-[#047857]"
+                        />
+                        <button
+                          type="button"
+                          onClick={() => setShowNewPassword((prev) => !prev)}
+                          className="absolute right-3 top-1/2 -translate-y-1/2 text-[#6b7280] hover:text-[#111827] cursor-pointer"
+                          aria-label={showNewPassword ? "Hide new password" : "Show new password"}
+                        >
+                          {showNewPassword ? <FiEyeOff className="w-4 h-4" /> : <FiEye className="w-4 h-4" />}
+                        </button>
+                      </div>
                       {touched.newPassword && errors.newPassword ? (
                         <p className="text-red-500 text-[12px] mt-1">{errors.newPassword}</p>
                       ) : null}
                     </div>
 
                     <div>
-                      <Field
-                        name="confirmPassword"
-                        type="password"
-                        placeholder="Confirm new password"
-                        className="w-full h-10 px-3 rounded-lg border border-[#e5e7eb] bg-white text-[14px] text-[#0B1C30] focus:outline-none focus:border-[#047857]"
-                      />
+                      <div className="relative">
+                        <Field
+                          name="confirmPassword"
+                          type={showConfirmPassword ? "text" : "password"}
+                          placeholder="Confirm new password"
+                          className="w-full h-10 pl-3 pr-10 rounded-lg border border-[#e5e7eb] bg-white text-[14px] text-[#0B1C30] focus:outline-none focus:border-[#047857]"
+                        />
+                        <button
+                          type="button"
+                          onClick={() => setShowConfirmPassword((prev) => !prev)}
+                          className="absolute right-3 top-1/2 -translate-y-1/2 text-[#6b7280] hover:text-[#111827] cursor-pointer"
+                          aria-label={showConfirmPassword ? "Hide confirm password" : "Show confirm password"}
+                        >
+                          {showConfirmPassword ? <FiEyeOff className="w-4 h-4" /> : <FiEye className="w-4 h-4" />}
+                        </button>
+                      </div>
                       {touched.confirmPassword && errors.confirmPassword ? (
                         <p className="text-red-500 text-[12px] mt-1">{errors.confirmPassword}</p>
                       ) : null}
