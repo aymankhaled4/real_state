@@ -2,9 +2,9 @@ import cta from "../../assets/cta.png";
 
 export default function CTA() {
   return (
-    <section className="bg-[#f8f9ff] py-20 lg:py-24 px-4 md:px-6 lg:px-8">
+    <section className="bg-page py-20 lg:py-24 px-4 md:px-6 lg:px-8 transition-colors">
       <div className="flex flex-col lg:flex-row items-center">
-        <div className="w-full lg:w-[60%] px-10 lg:px-20 pt-15 lg:pt-20 pb-15 lg:pb-24 flex flex-col gap-6 bg-[#131b2e] rounded-2xl lg:rounded-e-none lg:rounded-s-2xl">
+        <div className="w-full lg:w-[60%] px-10 lg:px-20 pt-15 lg:pt-20 pb-15 lg:pb-24 flex flex-col gap-6 bg-[#131b2e] dark:bg-slate-950 rounded-2xl lg:rounded-e-none lg:rounded-s-2xl">
           <h2 className="text-[36px] lg:text-[48px] font-bold leading-12 tracking-[-1.2px] text-white">
             Join the Inner Circle of Architectural Excellence
           </h2>
