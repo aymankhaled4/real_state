@@ -178,7 +178,11 @@
       "id": "7",
       "userId": 3,
       "propertyId": 8
+    },
+    {
+      "userId": "HIW1hU3",
+      "propertyId": "2",
+      "id": "GAhrcoU"
     }
-  ],
-  "$schema": "./node_modules/json-server/schema.json"
+  ]
 }

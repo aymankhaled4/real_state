@@ -23,8 +23,7 @@ export default function PropertyCard({ property }: Props) {
         <button
           type="button"
           onClick={() => toggleFavorite(String(property.id))}
-          className="w-10 h-10 bg-white/90 dark:bg-surface-elevated/95 rounded-full absolute top-4 right-4 flex items-center justify-center cursor-pointer hover:scale-110 transition-transform border border-border/0 dark:border-border/50"
-        >
+          className="w-10 h-10 bg-white/90 dark:bg-surface-elevated/95 rounded-full absolute top-4 right-4 flex items-center justify-center cursor-pointer hover:scale-110 transition-transform border border-border/0 dark:border-border/50">
           <FiHeart
             className={`w-5 h-5 transition-colors ${
               favorited

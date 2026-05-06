@@ -1,13 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { useContext } from "react";
-import {
-  FiHeart,
-  FiLogOut,
-  FiMoon,
-  FiSearch,
-  FiSun,
-  FiUser,
-} from "react-icons/fi";
+import { FiHeart, FiLogOut, FiMoon, FiSun, FiUser } from "react-icons/fi";
 import AuthContext from "../../context/AuthContext";
 import useFavorites from "../../hooks/useFavorites";
 import useTheme from "../../hooks/useTheme";
@@ -15,9 +8,6 @@ import useTheme from "../../hooks/useTheme";
 const NavLinks = [
   {
     link: "Listings",
-  },
-  {
-    link: "Profile",
   },
 ];
 
@@ -28,7 +18,7 @@ export default function Navbar() {
 
   return (
     <header className="bg-surface-elevated border-b border-border transition-colors">
-      <nav className="px-8 py-3 flex items-center justify-between max-w-7xl mx-auto">
+      <nav className="px-4 md:px-6 lg:px-8 py-3 flex items-center justify-between">
         <div className="flex items-center gap-8">
           <h1 className="text-2xl font-semibold leading-8 tracking-[-1.2px] text-foreground">
             DreamHome
@@ -46,22 +36,6 @@ export default function Navbar() {
             ))}
           </ul>
         </div>
-        {isAuthenticated ? (
-          <div className="flex items-center gap-4 text-[#334155]">
-            <FiSearch className="w-4 h-4" />
-            <FiHeart className="w-4 h-4" />
-            <NavLink to="/profile" className="inline-flex items-center">
-              <FiUser className="w-4 h-4" />
-            </NavLink>
-            <button
-              type="button"
-              onClick={logoutHandler}
-              className="inline-flex items-center gap-1 text-[13px] font-medium text-[#0f172a] cursor-pointer">
-              <FiLogOut className="w-4 h-4" />
-              Logout
-            </button>
-          </div>
-        ) : null}
         <div className="flex items-center gap-3">
           <button
             type="button"
@@ -79,7 +53,6 @@ export default function Navbar() {
           </button>
           {isAuthenticated ? (
             <div className="flex items-center gap-4 text-muted-foreground">
-              <FiSearch className="w-4 h-4" aria-hidden />
               <NavLink
                 to="/favorites"
                 className={({ isActive }) =>
@@ -104,12 +77,21 @@ export default function Navbar() {
               <button
                 type="button"
                 onClick={logoutHandler}
-                className="inline-flex items-center gap-1 text-[13px] font-medium text-foreground cursor-pointer">
+                className="inline-flex items-center gap-1.5 text-[13px] font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer">
                 <FiLogOut className="w-4 h-4" />
                 Logout
               </button>
             </div>
-          ) : null}
+          ) : (
+            <div>
+              <NavLink
+                to="/login"
+                className="bg-accent text-white text-[13px] font-medium px-4 h-8 rounded-lg hover:opacity-90 transition-opacity inline-flex items-center">
+                {" "}
+                Login
+              </NavLink>
+            </div>
+          )}
         </div>
       </nav>
     </header>

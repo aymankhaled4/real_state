@@ -10,8 +10,7 @@ export default function Properties({ search, PropertiesSection }: Props) {
   return (
     <section
       className="px-4 md:px-6 lg:px-8 py-24 bg-[#eff4ff] dark:bg-surface/50 transition-colors"
-      ref={PropertiesSection}
-    >
+      ref={PropertiesSection}>
       <span className="text-[14px] font-bold text-accent leading-6 tracking-[1.6px]">
         CURATED SELECTION
       </span>
