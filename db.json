@@ -134,7 +134,7 @@
       "id": "20e7",
       "email": "osama.abdo4040@gmail.com",
       "name": "Osama Abdelrahman",
-      "password": "Osama_abdo536"
+      "password": "Oabdo536"
     },
     {
       "email": "aymankhaled@gmail.com",
@@ -225,6 +225,16 @@
       "id": "3e0a",
       "userId": "88ee",
       "propertyId": "2"
+    },
+    {
+      "id": "73ee",
+      "userId": "20e7",
+      "propertyId": "2"
+    },
+    {
+      "id": "0269",
+      "userId": "20e7",
+      "propertyId": "1"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

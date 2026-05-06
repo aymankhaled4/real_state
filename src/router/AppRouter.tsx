@@ -14,8 +14,6 @@ export default function AppRouter() {
       <Route path="/listings" element={<HomePage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
-      <Route path="/profile" element={<ProfilePage />} />
-      <Route path="/favorites" element={<FavoritesPage />} />
       <Route path="/properties/:id" element={<PropertyDetailPage />} />
 
       <Route element={<ProtectedRoute />}>

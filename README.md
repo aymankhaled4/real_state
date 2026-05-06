@@ -15,6 +15,28 @@ A modern real estate browsing platform built with **React**, **TypeScript**, and
 
 ---
 
+## 📸 Screenshots
+
+### 🏠 Home
+![Home](docs/screenshots/home.png)
+
+### 🔐 Login
+![Login](docs/screenshots/login.png)
+
+### 📝 Register
+![Register](docs/screenshots/register.png)
+
+### ❤️ Favorites
+![Favorites](docs/screenshots/favorites.png)
+
+### 🏡 Property Details
+![Details](docs/screenshots/details.png)
+
+### 👤 Profile
+![Profile](docs/screenshots/profile.png)
+
+---
+
 ## 🛠️ Tech Stack
 
 | Category | Technology |
