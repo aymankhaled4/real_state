@@ -1,0 +1,48 @@
+import { Link } from "react-router-dom";
+import LoginForm from "../components/auth/LoginForm";
+
+export default function LoginPage() {
+  return (
+    <main className="min-h-screen flex">
+      <div className="hidden lg:flex w-1/2 relative overflow-hidden flex-col justify-end p-12">
+        <img
+          src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=80"
+          alt="Luxury Villa"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-linear-to-br from-[#0B1C30]/90 via-[#131b2e]/70 to-[#047857]/60" />
+        <div className="relative z-10">
+          <h2 className="text-4xl font-bold text-white leading-tight">
+            Architecture <br />
+            <span className="text-[#34d399]">Meets </span>
+            <span className="text-[#34d399]">Ambition.</span>
+          </h2>
+          <p className="text-[#94a3b8] mt-4 text-[16px] leading-7 w-[70%]">
+            Discover the world's most evocative living spaces curated for you.
+          </p>
+        </div>
+      </div>
+
+      <div className="w-full lg:w-1/2 flex items-center justify-center bg-page px-6 py-12 transition-colors">
+        <div className="w-full max-w-md">
+          <span className="text-[13px] font-bold text-accent tracking-[1.6px]">
+            WELCOME BACK
+          </span>
+          <h1 className="text-4xl font-bold text-foreground mt-2 mb-2">
+            Sign in
+          </h1>
+          <p className="text-muted-foreground text-[15px] mb-8">
+            Access your saved properties and personalized listings.
+          </p>
+          <LoginForm />
+          <p className="text-center text-[14px] text-muted-foreground mt-6">
+            Don't have an account?{" "}
+            <Link to="/register" className="text-accent font-semibold hover:underline">
+              Create one
+            </Link>
+          </p>
+        </div>
+      </div>
+    </main>
+  );
+}
