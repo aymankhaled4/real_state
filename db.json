@@ -147,6 +147,12 @@
       "email": "roaaelrouby45@gmail.com",
       "name": "Roaa Abdelwhab ",
       "password": "123456AA"
+    },
+    {
+      "id": "88ee",
+      "email": "sanaaelshafae283@gmail.com",
+      "name": "Sanaa Amer",
+      "password": "Sanaa@123"
     }
   ],
   "favorites": [
@@ -209,6 +215,17 @@
       "userId": "HIW1hU3",
       "propertyId": "3",
       "id": "tbcM6TD"
+    },
+    {
+      "id": "118e",
+      "userId": "88ee",
+      "propertyId": "10"
+    },
+    {
+      "id": "3e0a",
+      "userId": "88ee",
+      "propertyId": "2"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

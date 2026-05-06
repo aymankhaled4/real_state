@@ -2,23 +2,24 @@ import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import type IProperty from "../../interfaces/Iproperties";
 import AuthContext from "../../context/AuthContext";
+import useFavorites from "../../hooks/useFavorites";
 
 interface Props {
   property: IProperty;
 }
 
 export default function PropertyDetailSidebar({ property }: Props) {
-  const [saved, setSaved] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [message, setMessage] = useState("");
   const [sent, setSent] = useState(false);
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
+  const { isFavorite, toggleFavorite } = useFavorites();
 
   const handleSave = () => {
     if (!user) { setShowAuthModal(true); return; }
-    setSaved((s) => !s);
+    toggleFavorite(String(property.id));
   };
 
   const handleContact = () => {
@@ -47,8 +48,8 @@ export default function PropertyDetailSidebar({ property }: Props) {
           onClick={handleSave}
           className="w-full flex items-center justify-center gap-2 border border-border rounded-xl py-2.5 text-sm text-muted-foreground mb-3 hover:bg-surface transition cursor-pointer"
         >
-          <span>{saved ? "❤️" : "🤍"}</span>
-          {saved ? "Saved to Favorites" : "Save to Favorites"}
+          <span>{isFavorite(String(property.id)) ? "❤️" : "🤍"}</span>
+          {isFavorite(String(property.id)) ? "Saved to Favorites" : "Save to Favorites"}
         </button>
 
         <button
