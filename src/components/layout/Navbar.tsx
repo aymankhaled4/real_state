@@ -51,6 +51,7 @@ export default function Navbar() {
               <FiMoon className="w-4 h-4" />
             )}
           </button>
+
           {isAuthenticated ? (
             <div className="flex items-center gap-4 text-muted-foreground">
               <NavLink
@@ -61,11 +62,12 @@ export default function Navbar() {
                 aria-label="Favorites">
                 <FiHeart className="w-4 h-4" />
                 {favoritesCount > 0 && (
-                  <span className="absolute -top-2 -right-2 bg-[#4f6ef7] text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center leading-none">
+                  <span className="absolute -top-2 -right-2 bg-accent text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
                     {favoritesCount}
                   </span>
                 )}
               </NavLink>
+
               <NavLink
                 to="/profile"
                 className={({ isActive }) =>
@@ -74,6 +76,7 @@ export default function Navbar() {
                 aria-label="Profile">
                 <FiUser className="w-4 h-4" />
               </NavLink>
+
               <button
                 type="button"
                 onClick={logoutHandler}

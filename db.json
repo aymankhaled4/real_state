@@ -138,9 +138,15 @@
     },
     {
       "email": "aymankhaled@gmail.com",
-      "name": "ayman",
+      "name": "Ayman",
       "password": "12345678A",
       "id": "HIW1hU3"
+    },
+    {
+      "id": "8f42",
+      "email": "roaaelrouby45@gmail.com",
+      "name": "Roaa Abdelwhab ",
+      "password": "123456AA"
     }
   ],
   "favorites": [
@@ -180,9 +186,29 @@
       "propertyId": 8
     },
     {
+      "id": "aea7",
+      "userId": "8f42",
+      "propertyId": "2"
+    },
+    {
+      "id": "de5b",
+      "userId": "8f42",
+      "propertyId": "1"
+    },
+    {
+      "userId": "HIW1hU3",
+      "propertyId": "1",
+      "id": "Ru_GxVj"
+    },
+    {
       "userId": "HIW1hU3",
       "propertyId": "2",
-      "id": "GAhrcoU"
+      "id": "FmeP-e3"
+    },
+    {
+      "userId": "HIW1hU3",
+      "propertyId": "3",
+      "id": "tbcM6TD"
     }
   ]
 }

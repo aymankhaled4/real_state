@@ -37,8 +37,7 @@ export default function Hero({
           <button
             onClick={searchHandler}
             type="button"
-            className="bg-accent-hover text-[14px] text-white px-8 py-3 rounded-lg hover:opacity-90 transition-colors cursor-pointer"
-          >
+            className="bg-accent text-[14px] text-white px-8 py-3 rounded-lg hover:bg-accent-hover transition-colors cursor-pointer border border-accent">
             Search Listings
           </button>
         </div>
